@@ -1,3 +1,6 @@
+# from urllib3 import requests
+# print(requests.get('https://www.google.co.jp/').text)
+
 import networkx as nx
 import string
 #new graph
@@ -21,3 +24,4 @@ print(nx.number_of_edges(G))
 list_edge = [("C","D"),("E","F"),("G","H")]
 G.add_edges_from(list_edge)
 print(nx.number_of_edges(G))
+
