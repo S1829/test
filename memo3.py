@@ -1,33 +1,32 @@
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QMainWindow
+from PyQt5.QtGui import *
 
-class MainWindow(QWidget):
+class MainWindow(QMainWindow):
     def __init__(self): #def __init__(self, parent = None)
         super().__init__() # super(MainWindow, self).__init__(parent)
+        # self.statusBar()
+        # メニューバー作成
+        self.menubar = self.menuBar()
+        self.menubar.addMenu('File')
+        self.menubar.addMenu('Capture')
 
-        self.vbox = QVBoxLayout(self)
-        self.buttonlayout1 = QHBoxLayout(self)
+        self.toolbar = self.addToolBar("toolbar")
+        self.button1= QPushButton("scale up")
+        self.button2 = QPushButton("scale down")
+        self.toolbar.addWidget(self.button1)
+        self.toolbar.addWidget(self.button2)
 
-        #button top
-        self.button1 = QPushButton("ファイル",self)
-        self.button2 = QPushButton("キャプチャ",self)
-        self.menu1 = QHBoxLayout(self)
-        # self.menu1.addWidget(self.button1)
-        # self.menu1.addWidget(self.button2)
-        self.button1.setGeometry(0,0,30,10)
-        self.button2.setGeometry(40,0,30,10)
+        self.CWidgets = self.centralWidget()
 
-        #button bottom
-        self.button3 = QPushButton("ズームイン",self)
-        self.button4 = QPushButton("ズームアウト",self)
-        self.menu2 = QHBoxLayout(self)
-        # self.menu2.addWidget(self.button3)
-        # self.menu2.addWidget(self.button4)
-        self.button1.setGeometry(0,20,30,10)
-        self.button2.setGeometry(40,20,30,10)
-
+        # self.menu = QMenuBar()
+        # self.menu.addMenu('&File')
+        
+        # exitActionを紐づける
+        # fileMenu.addAction(exitAction)
+        
+        self.hbox = QVBoxLayout(self)
 
         #frame
         self.top = QFrame(self)
@@ -80,40 +79,11 @@ class MainWindow(QWidget):
         # self.splitter4.setStretchFactor(1,1)
         # self.splitter2.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         # self.splitter3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        self.vbox.addLayout(self.menu1)
-        self.vbox.addLayout(self.menu2)
-        self.vbox.addWidget(self.splitter4)
-        self.setLayout(self.vbox)
 
-        # #layout
-        # self.layout_main = QHBoxLayout()
-        # self.layout1 = QVBoxLayout()
-        # self.layout2 = QHBoxLayout()
-        # self.layout3 = QVBoxLayout()
+        # self.hbox.addWidget(self.splitter4)
+        # self.setLayout(self.hbox)
 
-        # #button
-        # self.button1 = QPushButton()
-        # self.button2 = QPushButton()
-        # self.button3 = QPushButton()
-        # self.button4 = QPushButton()
-        # self.button5 = QPushButton()
-        # self.button6 = QPushButton()
-
-        # #set layout left
-        # self.layout1.addWidget(self.button1)
-        # self.layout2.addWidget(self.button2)
-        # self.layout2.addWidget(self.button3)
-        # self.layout1.addLayout(self.layout2)
-
-        # #set layout right
-        # self.layout3.addWidget(self.button4)
-        # self.layout3.addWidget(self.button5)
-        # self.layout3.addWidget(self.button6)
-
-        # self.layout_main.addLayout(self.layout1)
-        # self.layout_main.addLayout(self.layout3)
-
-        # self.setLayout(self.layout_main)
+        self.setCentralWidget(self.splitter4)
 
         self.setGeometry(200, 400, 1000, 600)
         self.setWindowTitle('QtWindow')
