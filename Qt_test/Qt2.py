@@ -20,20 +20,33 @@ class MainWindow(QMainWindow):
 
         self.CWidgets = self.centralWidget()
 
-        # self.menu = QMenuBar()
-        # self.menu.addMenu('&File')
-        
-        # exitActionを紐づける
-        # fileMenu.addAction(exitAction)
-        
+        #layout
+        self.layoutTop = QVBoxLayout(self)
+        self.lbtmLeft = QVBoxLayout(self)
+
+        #tableview
+        # self.tv1 = QTableView()
+        # self.list = QTableWidgetItem()
+        # self.item[1] = QTableWidgetItem(QtWidgets.QString("data").arg(0.1))
+        self.tv2 = QTableWidget(4,4)
+        self.layoutTop.addWidget(self.tv2)
+
+        #textbox
+        self.text1 = QTextEdit("test")
+        self.text2 = QTextEdit("end")
+        self.lbtmLeft.addWidget(self.text1,1)
+        self.lbtmLeft.addWidget(self.text2,2)
+
         self.hbox = QVBoxLayout(self)
 
         #frame
         self.top = QFrame(self)
         self.top.setFrameShape(QFrame.StyledPanel)
+        self.top.setLayout(self.layoutTop)    
 
         self.bottomleft = QFrame(self)
         self.bottomleft.setFrameShape(QFrame.StyledPanel)
+        self.bottomleft.setLayout(self.lbtmLeft)
 
         self.bottomright = QFrame(self)
         self.bottomright.setFrameShape(QFrame.StyledPanel)
@@ -46,13 +59,6 @@ class MainWindow(QMainWindow):
 
         self.sidebottom = QFrame(self)
         self.sidebottom.setFrameShape(QFrame.StyledPanel)
-
-
-        # #layout
-        # self.sidelayout = QVBoxLayout()
-        # self.sidelayout.addWidget(self.sidetop)
-        # self.sidelayout.addWidget(self.sidemiddle)
-        # self.sidelayout.addWidget(self.sidebottom)
         
         #splitter horizontal1
         self.splitter1 = QSplitter(Qt.Horizontal)
@@ -75,13 +81,6 @@ class MainWindow(QMainWindow):
         self.splitter4 = QSplitter(Qt.Horizontal)
         self.splitter4.addWidget(self.splitter2)
         self.splitter4.addWidget(self.splitter3)
-        # self.splitter4.setStretchFactor(0,2)
-        # self.splitter4.setStretchFactor(1,1)
-        # self.splitter2.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        # self.splitter3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-
-        # self.hbox.addWidget(self.splitter4)
-        # self.setLayout(self.hbox)
 
         self.setCentralWidget(self.splitter4)
 
